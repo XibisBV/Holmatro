@@ -5,6 +5,7 @@ from datetime import datetime
 #TODO: fill with data flow params
 company = "4000"
 tenant = "L567NQT482F74MTX_TST"
+site = "S_STA001"
 
 # TODO: remove example and use data flow params to set input_document
 input_document = """
@@ -20,7 +21,7 @@ input_document = """
     "MI": "B",
     "Date": "150925",
     "ItemNumber": "151.002.109",
-    "Row": "15",
+    "Length": "15",
     "Quantity": "1"
   }"""
 
@@ -79,7 +80,7 @@ ET.SubElement(prop2, "NameValue", {
     "type": "MasterDataReferenceType",
     "nounName": "Location",
     "accountingEntity": company
-}).text = "S_STA001"
+}).text = site
 
 operations = ET.SubElement(bor, "Operations")
 ET.SubElement(operations, "ID").text = "10"
@@ -90,7 +91,8 @@ consumed_item = ET.SubElement(operations, "ConsumedItem")
 item_id = ET.SubElement(consumed_item, "ItemID")
 ET.SubElement(item_id, "ID").text = data["ItemNumber"]
 ET.SubElement(consumed_item, "BaseUOMQuantity", {"unitCode": data["UOM"].upper()}).text = data["Quantity"]
-ET.SubElement(consumed_item, "LineNumber").text = data["Row"]
+#TODO: check if this is correct, I assume it is wrong but I don't know how to interpret length and lines
+ET.SubElement(consumed_item, "LineNumber").text = data["Length"]
 etp = ET.SubElement(consumed_item, "EffectiveTimePeriod")
 ET.SubElement(etp, "StartDateTime").text = now
 status_ci = ET.SubElement(consumed_item, "Status")
@@ -104,4 +106,3 @@ p2 = ET.SubElement(ua_ci, "Property")
 ET.SubElement(p2, "NameValue", {"name": "ln.PhantomIndicator"}).text = "No"
 
 output_document = ET.tostring(root, encoding="utf-8").decode("utf-8")
-output_document = ''

@@ -6,7 +6,7 @@ input_document = 'I;100.000.096;CHN_MINIMUM_SET_Neuswiel VDS - Gelagerd kunststo
 
 jsonArray = []
       
-input_document_with_headers = 'Import;Description;Searchkey1;Searchkey2;Project;UOM;PartsListQuantity;ItemGroup;MI;Date;ItemNumber;Row;Quantity' + '\n' + input_document 
+input_document_with_headers = 'Import;Description;Searchkey1;Searchkey2;Project;UOM;PartsListQuantity;ItemGroup;MI;Date;ItemNumber;Length;Quantity' + '\n' + input_document 
 
 values = input_document_with_headers.splitlines()
 
