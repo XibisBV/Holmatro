@@ -1,6 +1,7 @@
 import csv 
 import json 
 
+# TODO: remove example and use data flow params to set input_document
 input_document = 'I;100.000.096;CHN_MINIMUM_SET_Neuswiel VDS - Gelagerd kunststof wiel;;1;pcs;000002;Product;B;150925;151.002.109;15;1'
 
 jsonArray = []

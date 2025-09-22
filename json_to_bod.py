@@ -2,6 +2,11 @@ import xml.etree.ElementTree as ET
 import json
 from datetime import datetime
 
+#TODO: fill with data flow params
+company = "4000"
+tenant = "L567NQT482F74MTX_TST"
+
+# TODO: remove example and use data flow params to set input_document
 input_document = """
 {
     "Import": "I",
@@ -37,6 +42,7 @@ ET.SubElement(sender, "LogicalID").text = "lid://infor.ln.ln01/" + company
 ET.SubElement(sender, "ComponentID").text = "erp"
 ET.SubElement(sender, "ConfirmationCode").text = "OnError"
 ET.SubElement(application_area, "CreationDateTime").text = now
+#TODO: fill BODID with values based on best practices
 ET.SubElement(application_area, "BODID").text = "infor-nid:L567NQT482F74MTX_TST:4000::10000175:?BillOfResources&verb=Process"
 
 data_area = ET.SubElement(root, "DataArea")
