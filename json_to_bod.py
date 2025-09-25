@@ -27,9 +27,6 @@ input_document = """
 
 data = json.loads(input_document)
 
-company = "4000"
-tenant = "L567NQT482F74MTX_TST"
-
 now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 root = ET.Element("ProcessBillOfResources", {
