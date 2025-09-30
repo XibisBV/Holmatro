@@ -4,6 +4,12 @@
     "title": "Holmatro Blob Storage API",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/TST/PLM",
+      "description": "Test server"
+    }
+  ],
   "paths": {
     "/{container}/{blob}": {
       "get": {
@@ -50,10 +56,9 @@
           "200": {
             "description": "Blob retrieved successfully",
             "content": {
-              "application/octet-stream": {
+              "text/plain": {
                 "schema": {
-                  "type": "string",
-                  "format": "binary"
+                  "type": "string"
                 }
               }
             }
@@ -115,7 +120,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/xml": {
+            "text/plain": {
               "schema": {
                 "type": "string"
               },
