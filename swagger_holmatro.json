@@ -1,23 +1,14 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Holmatro Blob Storage API (Azurite)",
+    "title": "Holmatro Blob Storage API",
     "version": "1.0.0"
   },
   "paths": {
-    "/{account}/{container}/{blob}": {
+    "/{container}/{blob}": {
       "get": {
         "summary": "Retrieve a blob",
         "parameters": [
-          {
-            "name": "account",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "devstoreaccount1"
-          },
           {
             "name": "container",
             "in": "path",
@@ -53,15 +44,6 @@
               "type": "string"
             },
             "example": "2020-10-02"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "SharedKey devstoreaccount1:..."
           }
         ],
         "responses": {
@@ -84,15 +66,6 @@
       "put": {
         "summary": "Upload or overwrite a blob",
         "parameters": [
-          {
-            "name": "account",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "devstoreaccount1"
-          },
           {
             "name": "container",
             "in": "path",
@@ -137,15 +110,6 @@
               "type": "string"
             },
             "example": "BlockBlob"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "SharedKey devstoreaccount1:..."
           }
         ],
         "requestBody": {
@@ -168,15 +132,6 @@
       "delete": {
         "summary": "Delete a blob",
         "parameters": [
-          {
-            "name": "account",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "devstoreaccount1"
-          },
           {
             "name": "container",
             "in": "path",
@@ -212,15 +167,6 @@
               "type": "string"
             },
             "example": "2020-10-02"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "SharedKey devstoreaccount1:..."
           }
         ],
         "responses": {
@@ -233,20 +179,11 @@
         }
       }
     },
-    "/{account}/{container}/{blob}/copy": {
+    "/{container}/archive/{blob}": {
       "put": {
         "summary": "Copy a blob",
         "description": "Copies a blob from a source to the given destination using `x-ms-copy-source`.",
         "parameters": [
-          {
-            "name": "account",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "devstoreaccount1"
-          },
           {
             "name": "container",
             "in": "path",
@@ -291,15 +228,6 @@
               "type": "string"
             },
             "example": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "SharedKey devstoreaccount1:..."
           }
         ],
         "responses": {
