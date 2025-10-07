@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  HolmatroAzureStorage:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: HolmatroAzureStorage
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Handler: index.handler
+      Runtime: nodejs20.x
+      Architectures:
+      - x86_64
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          ACCOUNT_NAME: stlnceweu002
+          CLIENT_ID: 4d8a627b-7dbb-4a38-b6ea-91d59df265b0
+          CLIENT_SECRET: -qz8Q~HWLl3KYQmCJrU1L64icnbp3sAOWJC1xb8a
+          TENANT_ID: 79ec8483-7068-4557-9d63-0bb4df31d1be
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      PackageType: Zip
+      Policies:
+      - Statement:
+        - Effect: Allow
+          Action:
+          - logs:CreateLogGroup
+          Resource: arn:aws:logs:eu-central-1:640168452001:*
+        - Effect: Allow
+          Action:
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+          Resource:
+          - arn:aws:logs:eu-central-1:640168452001:log-group:/aws/lambda/HolmatroAzureStorage:*
+      RecursiveLoop: Terminate
+      SnapStart:
+        ApplyOn: None
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /{container}/{blob}
+            Method: ANY
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto
+    Metadata:
+      SamResourceId: HolmatroAzureStorage

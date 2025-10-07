@@ -4,65 +4,41 @@ input_document = 'IH;450.000.002;Test 2 for New ERP;PRE000625;1;pcs;000004;Produ
     
 import csv 
 import json
-from collections import defaultdict 
+
 pos_line = 0
 next_product_name = ''
 prev_product_name = 'A'
 
-product_data = defaultdict(list)
-
+output_json_list = []
 input_document_with_headers = 'Import;Product;Description;Project;BOM_Quantity;Unit;Item_Group;Item_Type;Revision;Effective_Date;Material;Length;Net_Quantity' + '\n' + input_document 
 
 values = input_document_with_headers.splitlines()
 
 inputReader = csv.DictReader(values,delimiter=';')
 for row in inputReader:
-#    next_product_name = row['Product']
-#    if prev_product_name != next_product_name:
-#        pos_line = 10
-#    else:
     pos_line =+ 10
-
-    import_name = row['Import']
-    product_name = row['Product']
- #  prev_product_name = row['Product']
-    description_name = row['Description']
-    project_name = row['Project']
-    BOM_Quantity = row['BOM_Quantity']
-    Unit = row['Unit']
-    Item_Group = row['Item_Group']
-    Item_Type = row['Item_Type']
-    Revision = row['Revision']
-    Effective_Date = row['Effective_Date']
-
-    material_line = {
+    product_object = {
+        "Import": row['Import'],
+        "Product": row['Product'],
+        "Description": row['Description'],
+        "Project": row['Project'],
+        "BOM_Quantity": row['BOM_Quantity'],
+        "Unit": row['Unit'],
+        "Item_Group": row['Item_Group'],
+        "Item_Type": row['Item_Type'],
+        "Revision": row['Revision'],
+        "Effective_Date": row['Effective_Date'],
+        "Materials": {
                     "Position": pos_line,
                     "Material": row['Material'],
                     "Length": row['Length'],
                     "Net_Quantity": row['Net_Quantity']
+                    }
     }
     
-    product_data[import_name, product_name, description_name, project_name, BOM_Quantity, Unit,Item_Group,Item_Type,Revision,Effective_Date].append(material_line)
+    output_json_list.append(product_object)
 
-json_output_list = []
-for product_name, materials_list in product_data.items():
-    # ⭐ KEY CHANGE: Create an object for each product with explicit labels
-    product_object = {
-        "Import": import_name,
-        "Product": product_name,
-        "Description": description_name,
-        "Project": project_name,
-        "BOM_Quantity": BOM_Quantity,
-        "Unit": Unit,
-        "Item_Group": Item_Group,
-        "Item_Type": Item_Type,
-        "Revision": Revision,
-        "Effective_Date": Effective_Date,
-        "Materials": materials_list # The sub-array is explicitly labeled "Materials"
-    }
-    json_output_list.append(product_object)
 
-output_json = json.dumps(json_output_list, indent=4)
+output_json = json.dumps(output_json_list, indent=4)
 
-print(json_output_list)
 print(output_json)

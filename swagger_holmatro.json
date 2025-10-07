@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/TST/PLM",
+      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/GW/AWS",
       "description": "Test server"
     }
   ],
@@ -32,24 +32,6 @@
               "type": "string"
             },
             "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
-          },
-          {
-            "name": "x-ms-date",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
-          },
-          {
-            "name": "x-ms-version",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "2020-10-02"
           }
         ],
         "responses": {
