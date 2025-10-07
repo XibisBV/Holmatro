@@ -1,0 +1,246 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Holmatro Blob Storage API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/TST/PLM",
+      "description": "Test server"
+    }
+  ],
+  "paths": {
+    "/{container}/{blob}": {
+      "get": {
+        "summary": "Retrieve a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blob retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Upload or overwrite a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "acknowledge/test.xml"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-blob-type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "BlockBlob"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "<root><sample>xml content</sample></root>"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blob created or overwritten"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Blob deletion accepted"
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      }
+    },
+    "/{container}/archive/{blob}": {
+      "put": {
+        "summary": "Copy a blob",
+        "description": "Copies a blob from a source to the given destination using `x-ms-copy-source`.",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "archive/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-copy-source",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Copy operation accepted"
+          }
+        }
+      }
+    }
+  }
+}
