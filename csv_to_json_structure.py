@@ -5,39 +5,49 @@ input_document = 'IH;450.000.002;Test 2 for New ERP;PRE000625;1;pcs;000004;Produ
 import csv 
 import json
 
-pos_line = 0
-next_product_name = ''
-prev_product_name = 'A'
-
-output_json_list = []
 input_document_with_headers = 'Import;Product;Description;Project;BOM_Quantity;Unit;Item_Group;Item_Type;Revision;Effective_Date;Material;Length;Net_Quantity' + '\n' + input_document 
 
 values = input_document_with_headers.splitlines()
+products = {}
+position = 0
 
 inputReader = csv.DictReader(values,delimiter=';')
 for row in inputReader:
-    pos_line =+ 10
-    product_object = {
-        "Import": row['Import'],
-        "Product": row['Product'],
-        "Description": row['Description'],
-        "Project": row['Project'],
-        "BOM_Quantity": row['BOM_Quantity'],
-        "Unit": row['Unit'],
-        "Item_Group": row['Item_Group'],
-        "Item_Type": row['Item_Type'],
-        "Revision": row['Revision'],
-        "Effective_Date": row['Effective_Date'],
-        "Materials": {
-                    "Position": pos_line,
-                    "Material": row['Material'],
-                    "Length": row['Length'],
-                    "Net_Quantity": row['Net_Quantity']
-                    }
-    }
     
-    output_json_list.append(product_object)
+    importValue = row['Import']
+    product = row['Product']
 
+    
+    key = f"{importValue}_{product}"
+    
+    if key not in products:
+        position = 0
+        products[key] = {
+            "Import": row['Import'],
+            "Product": row['Product'],
+            "Description": row['Description'],
+            "Project": row['Project'],
+            "BOM_Quantity": row['BOM_Quantity'],
+            "Unit": row['Unit'],
+            "Item_Group": row['Item_Group'],
+            "Item_Type": row['Item_Type'],
+            "Revision": row['Revision'],
+            "Effective_Date": row['Effective_Date'],
+            "Materials": []
+        }
+        
+    position += 10
+    if importValue == 'IL':
+        material_entry = {
+            "Position": position,
+            "Material": row['Material'],
+            "Length": row['Length'],
+            "Net_Quantity": row['Net_Quantity']
+        }
+    
+        products[key]["Materials"].append(material_entry)
+    
+output_json_list = list(products.values())
 
 output_json = json.dumps(output_json_list, indent=4)
 
