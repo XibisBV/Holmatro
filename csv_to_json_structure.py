@@ -46,9 +46,10 @@ for row in inputReader:
         }
     
         products[key]["Materials"].append(material_entry)
-    
-output_json_list = list(products.values())
+  
 
-output_json = json.dumps(output_json_list, indent=4)
+output_json_object = {"Products": list(products.values())}
+
+output_json = json.dumps(output_json_object, indent=4)
 
 print(output_json)
