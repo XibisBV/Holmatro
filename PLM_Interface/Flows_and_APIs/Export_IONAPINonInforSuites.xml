@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ionapiSuites>
+  <ionapiSuite>
+    <suiteName>PLM</suiteName>
+    <suiteDescription>Azure Storage TEST environment for PLM</suiteDescription>
+    <applicationName>PLM_TST</applicationName>
+    <context>TST</context>
+    <suiteType>NonInfor</suiteType>
+    <suiteIcon>
+      <SuiteIconImageGuid>e9d410f8-c550-4be9-9a49-a8c9a4599337</SuiteIconImageGuid>
+      <SuiteIconImageBase64>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</SuiteIconImageBase64>
+    </suiteIcon>
+    <proxyProfiles>
+      <proxyProfile>
+        <proxyEndpoints>
+          <proxyEndpoint>
+            <proxyEndpointURL>PLM</proxyEndpointURL>
+            <proxyAuthenticationType>OAuth2</proxyAuthenticationType>
+            <targetEndpoint>
+              <targetEndpointURL>https://stlnceweu002.blob.core.windows.net</targetEndpointURL>
+              <ignoreCertError>false</ignoreCertError>
+              <useEnterpriseConnector>false</useEnterpriseConnector>
+            </targetEndpoint>
+            <documentation>
+              <targetDocumentationName>Swagger</targetDocumentationName>
+              <targetDocumentationType>SWAGGERDATA</targetDocumentationType>
+              <targetDocumentationURL>{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Holmatro Blob Storage API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/TST/PLM",
+      "description": "Test server"
+    }
+  ],
+  "paths": {
+    "/{container}/{blob}": {
+      "get": {
+        "summary": "Retrieve a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blob retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Upload or overwrite a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "acknowledge/test.xml"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-blob-type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "BlockBlob"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "&lt;root&gt;&lt;sample&gt;xml content&lt;/sample&gt;&lt;/root&gt;"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blob created or overwritten"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Blob deletion accepted"
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      }
+    },
+    "/{container}/archive/{blob}": {
+      "put": {
+        "summary": "Copy a blob",
+        "description": "Copies a blob from a source to the given destination using `x-ms-copy-source`.",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "archive/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-copy-source",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Copy operation accepted"
+          }
+        }
+      }
+    }
+  }
+}</targetDocumentationURL>
+            </documentation>
+          </proxyEndpoint>
+        </proxyEndpoints>
+        <targetEndpointSecurity>
+          <targetEndpointOAuth20Auth>
+            <OAuth2TokenEndPoint>REPLACE_MANDATORY_VALUE</OAuth2TokenEndPoint>
+            <OAuth2RevokeEndPoint>REPLACE_OPTIONAL_VALUE</OAuth2RevokeEndPoint>
+            <clientCredentialsGrant>
+              <OAuth2CCClientId>REPLACE_MANDATORY_VALUE</OAuth2CCClientId>
+              <OAuth2CCClientSecret>REPLACE_OPTIONAL_VALUE</OAuth2CCClientSecret>
+              <OAuth2CCScope>REPLACE_OPTIONAL_VALUE</OAuth2CCScope>
+              <OAuth2CCCredentialsLocation>REPLACE_MANDATORY_VALUE</OAuth2CCCredentialsLocation>
+              <KeyItemList />
+            </clientCredentialsGrant>
+            <VersionNo>1.0</VersionNo>
+          </targetEndpointOAuth20Auth>
+        </targetEndpointSecurity>
+        <proxyPolicyProfiles />
+      </proxyProfile>
+    </proxyProfiles>
+    <suitePolicyProfiles />
+  </ionapiSuite>
+  <ionapiSuite>
+    <suiteName>PLM</suiteName>
+    <suiteDescription>PLM with correct headers for Azure</suiteDescription>
+    <applicationName>PLM V2</applicationName>
+    <context>GW</context>
+    <suiteType>NonInfor</suiteType>
+    <suiteIcon>
+      <SuiteIconImageGuid>8116084e-80a1-4970-b04f-b51929d68a23</SuiteIconImageGuid>
+      <SuiteIconImageBase64>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</SuiteIconImageBase64>
+    </suiteIcon>
+    <proxyProfiles>
+      <proxyProfile>
+        <proxyEndpoints>
+          <proxyEndpoint>
+            <proxyEndpointURL>AWS</proxyEndpointURL>
+            <proxyAuthenticationType>OAuth2</proxyAuthenticationType>
+            <targetEndpoint>
+              <targetEndpointURL>https://bg1mc1uug7.execute-api.eu-central-1.amazonaws.com</targetEndpointURL>
+              <ignoreCertError>false</ignoreCertError>
+              <useEnterpriseConnector>false</useEnterpriseConnector>
+            </targetEndpoint>
+            <documentation>
+              <targetDocumentationName>swagger</targetDocumentationName>
+              <targetDocumentationType>SWAGGERDATA</targetDocumentationType>
+              <targetDocumentationURL>{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Holmatro Blob Storage API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://mingle-ionapi.eu1.inforcloudsuite.com/L567NQT482F74MTX_TST/CustomerApi/GW/AWS",
+      "description": "Test server"
+    }
+  ],
+  "paths": {
+    "/{container}/{blob}": {
+      "get": {
+        "summary": "Retrieve a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blob retrieved successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Upload or overwrite a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "acknowledge/test.xml"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-blob-type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "BlockBlob"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "&lt;root&gt;&lt;sample&gt;xml content&lt;/sample&gt;&lt;/root&gt;"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blob created or overwritten"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a blob",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Blob deletion accepted"
+          },
+          "404": {
+            "description": "Blob not found"
+          }
+        }
+      }
+    },
+    "/{container}/archive/{blob}": {
+      "put": {
+        "summary": "Copy a blob",
+        "description": "Copies a blob from a source to the given destination using `x-ms-copy-source`.",
+        "parameters": [
+          {
+            "name": "container",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lnce-plm-tst"
+          },
+          {
+            "name": "blob",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "archive/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          },
+          {
+            "name": "x-ms-date",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mon, 29 Sep 2025 12:48:28 GMT"
+          },
+          {
+            "name": "x-ms-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2020-10-02"
+          },
+          {
+            "name": "x-ms-copy-source",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Copy operation accepted"
+          }
+        }
+      }
+    }
+  }
+}</targetDocumentationURL>
+            </documentation>
+          </proxyEndpoint>
+        </proxyEndpoints>
+        <targetEndpointSecurity>
+          <targetEndpointOAuth20Auth>
+            <OAuth2TokenEndPoint>REPLACE_MANDATORY_VALUE</OAuth2TokenEndPoint>
+            <OAuth2RevokeEndPoint>REPLACE_OPTIONAL_VALUE</OAuth2RevokeEndPoint>
+            <clientCredentialsGrant>
+              <OAuth2CCClientId>REPLACE_MANDATORY_VALUE</OAuth2CCClientId>
+              <OAuth2CCClientSecret>REPLACE_OPTIONAL_VALUE</OAuth2CCClientSecret>
+              <OAuth2CCScope>REPLACE_OPTIONAL_VALUE</OAuth2CCScope>
+              <OAuth2CCCredentialsLocation>REPLACE_MANDATORY_VALUE</OAuth2CCCredentialsLocation>
+              <KeyItemList />
+            </clientCredentialsGrant>
+            <VersionNo>1.0</VersionNo>
+          </targetEndpointOAuth20Auth>
+        </targetEndpointSecurity>
+        <proxyPolicyProfiles />
+      </proxyProfile>
+    </proxyProfiles>
+    <suitePolicyProfiles />
+  </ionapiSuite>
+</ionapiSuites>

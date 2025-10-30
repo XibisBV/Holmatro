@@ -1,0 +1,985 @@
+{
+	"info": {
+		"_postman_id": "faaabd46-8f5a-40db-9dee-8cabad92928e",
+		"name": "Holmatro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18999450",
+		"_collection_link": "https://galactic-meteor-585721.postman.co/workspace/ION-API-Gateway~38296ba5-70cd-4670-8901-45a142e1a96c/collection/18999450-faaabd46-8f5a-40db-9dee-8cabad92928e?action=share&source=collection_link&creator=18999450"
+	},
+	"item": [
+		{
+			"name": "RetrieveBlob",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\"; // or your Azure Storage account name",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\"; // Base64 key",
+							"const container = \"lnce-plm-tst\";",
+							"const blobName = \"PRE000625_items_20250905_XYZ_matching_BOD.txt\";",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"",
+							"// SharedKeyLite string-to-sign",
+							"const stringToSign =",
+							"    \"GET\\n\" +                // VERB",
+							"    \"\\n\" +                   // Content-MD5",
+							"    \"\\n\" +                   // Content-Type",
+							"    \"\\n\" +                   // Date (empty when x-ms-date used)",
+							"    \"/\" + accountName + \"/\" + container + \"/\" + blobName;",
+							"",
+							"// Decode key from Base64",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"",
+							"// HMAC-SHA256",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"",
+							"// Base64 encode signature",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKeyLite \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"PRE000625_items_20250905_XYZ_matching_BOD.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrieveBlob Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\"; // or your Azure Storage account name",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\"; // Base64 key",
+							"const container = \"lnce-plm-tst\";",
+							"const blobName = \"PRE000625_items_20250905_XYZ_matching_BOD.txt\";",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"",
+							"// SharedKeyLite string-to-sign",
+							"const stringToSign =",
+							"    \"GET\\n\" +                // VERB",
+							"    \"\\n\" +                   // Content-MD5",
+							"    \"\\n\" +                   // Content-Type",
+							"    \"\\n\" +                   // Date (empty when x-ms-date used)",
+							"    \"/\" + accountName + \"/\" + container + \"/\" + blobName;",
+							"",
+							"// Decode key from Base64",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"",
+							"// HMAC-SHA256",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"",
+							"// Base64 encode signature",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKeyLite \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"PRE000625_items_20250905_XYZ_matching_BOD.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CopyBlob",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\";",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\";",
+							"",
+							"// Get request details",
+							"const method = pm.request.method;",
+							"const url = pm.request.url;",
+							"const path = url.getPath(); // e.g. /devstoreaccount1/container/blob.txt",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"const version = \"2020-10-02\";",
+							"pm.environment.set(\"x_ms_version\", version);",
+							"",
+							"// --- Collect all x-ms-* headers from request + inject date/version ---",
+							"let xmsHeaders = {};",
+							"pm.request.headers.each(function (h) {",
+							"    if (h.key.toLowerCase().startsWith(\"x-ms-\")) {",
+							"        xmsHeaders[h.key.toLowerCase()] = h.value;",
+							"    }",
+							"});",
+							"",
+							"// Always overwrite with generated date/version to ensure consistency",
+							"xmsHeaders[\"x-ms-date\"] = now;",
+							"xmsHeaders[\"x-ms-version\"] = version;",
+							"",
+							"// CanonicalizedHeaders = sorted by header name",
+							"let canonicalizedHeaders = Object.keys(xmsHeaders)",
+							"    .sort()",
+							"    .map(h => h.toLowerCase() + \":\" + xmsHeaders[h])",
+							"    .join(\"\\n\") + \"\\n\";",
+							"",
+							"// CanonicalizedResource (Azurite needs account name twice)",
+							"const canonicalizedResource =",
+							"    \"/\" + accountName + \"/\" + accountName + path.replace(\"/\" + accountName, \"\");",
+							"",
+							"// SharedKey StringToSign",
+							"const stringToSign =",
+							"    method + \"\\n\" +       // VERB",
+							"    \"\\n\" +                // Content-Encoding",
+							"    \"\\n\" +                // Content-Language",
+							"    \"\\n\" +                // Content-Length",
+							"    \"\\n\" +                // Content-MD5",
+							"    \"\\n\" +                // Content-Type",
+							"    \"\\n\" +                // Date",
+							"    \"\\n\" +                // If-Modified-Since",
+							"    \"\\n\" +                // If-Match",
+							"    \"\\n\" +                // If-None-Match",
+							"    \"\\n\" +                // If-Unmodified-Since",
+							"    \"\\n\" +                // Range",
+							"    canonicalizedHeaders +",
+							"    canonicalizedResource;",
+							"",
+							"// Sign with key",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKey \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);",
+							"",
+							"// === DEBUG ===",
+							"console.log(\"=== SharedKey (Full) Signing Debug ===\");",
+							"console.log(\"Request URL:\", url.toString());",
+							"console.log(\"HTTP Method:\", method);",
+							"console.log(\"StringToSign:\\n[\" + stringToSign + \"]\");",
+							"console.log(\"CanonicalizedHeaders:\\n\" + canonicalizedHeaders);",
+							"console.log(\"CanonicalizedResource:\", canonicalizedResource);",
+							"console.log(\"Authorization Header:\", authHeader);",
+							"console.log(\"x-ms-date:\", now);",
+							"console.log(\"x-ms-version:\", version);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-copy-source",
+						"value": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/archive/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"archive",
+						"PRE000625_items_20250905_XYZ_matching_BOD.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveBlob",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\";",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\";",
+							"",
+							"// Get request details from Postman",
+							"const method = pm.request.method;",
+							"const url = pm.request.url;",
+							"const path = url.getPath(); // e.g. /devstoreaccount1/container/blob.txt",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"const version = \"2020-10-02\";",
+							"pm.environment.set(\"x_ms_version\", version);",
+							"",
+							"// CanonicalizedResource (Blob service = account name ONCE)",
+							"const canonicalizedResource = \"/\" + accountName + \"/\" + accountName + path.replace(\"/\" + accountName, \"\");",
+							"",
+							"// CanonicalizedHeaders",
+							"// Collect x-ms-* headers in lowercase, sorted",
+							"let xmsHeaders = {",
+							"    \"x-ms-date\": now,",
+							"    \"x-ms-version\": version",
+							"};",
+							"let canonicalizedHeaders = Object.keys(xmsHeaders)",
+							"    .sort()",
+							"    .map(h => h.toLowerCase() + \":\" + xmsHeaders[h])",
+							"    .join(\"\\n\") + \"\\n\";",
+							"",
+							"// SharedKey StringToSign (Blob spec)",
+							"const stringToSign =",
+							"    method + \"\\n\" +       // VERB",
+							"    \"\\n\" +                // Content-Encoding",
+							"    \"\\n\" +                // Content-Language",
+							"    \"\\n\" +                // Content-Length",
+							"    \"\\n\" +                // Content-MD5",
+							"    \"\\n\" +                // Content-Type",
+							"    \"\\n\" +                // Date",
+							"    \"\\n\" +                // If-Modified-Since",
+							"    \"\\n\" +                // If-Match",
+							"    \"\\n\" +                // If-None-Match",
+							"    \"\\n\" +                // If-Unmodified-Since",
+							"    \"\\n\" +                // Range",
+							"    canonicalizedHeaders +",
+							"    canonicalizedResource;",
+							"",
+							"// Sign with key",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKey \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);",
+							"",
+							"// === DEBUG ===",
+							"console.log(\"=== SharedKey (Full) Signing Debug ===\");",
+							"console.log(\"Request URL:\", url.toString());",
+							"console.log(\"HTTP Method:\", method);",
+							"console.log(\"StringToSign:\\n[\" + stringToSign + \"]\");",
+							"console.log(\"CanonicalizedHeaders:\\n\" + canonicalizedHeaders);",
+							"console.log(\"CanonicalizedResource:\", canonicalizedResource);",
+							"console.log(\"Authorization Header:\", authHeader);",
+							"console.log(\"x-ms-date:\", now);",
+							"console.log(\"x-ms-version:\", version);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"PRE000625_items_20250905_XYZ_matching_BOD.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveBlob - Azure",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\";",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\";",
+							"",
+							"// Get request details from Postman",
+							"const method = pm.request.method;",
+							"const url = pm.request.url;",
+							"const path = url.getPath(); // e.g. /devstoreaccount1/container/blob.txt",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"const version = \"2020-10-02\";",
+							"pm.environment.set(\"x_ms_version\", version);",
+							"",
+							"// CanonicalizedResource (Blob service = account name ONCE)",
+							"const canonicalizedResource = \"/\" + accountName + \"/\" + accountName + path.replace(\"/\" + accountName, \"\");",
+							"",
+							"// CanonicalizedHeaders",
+							"// Collect x-ms-* headers in lowercase, sorted",
+							"let xmsHeaders = {",
+							"    \"x-ms-date\": now,",
+							"    \"x-ms-version\": version",
+							"};",
+							"let canonicalizedHeaders = Object.keys(xmsHeaders)",
+							"    .sort()",
+							"    .map(h => h.toLowerCase() + \":\" + xmsHeaders[h])",
+							"    .join(\"\\n\") + \"\\n\";",
+							"",
+							"// SharedKey StringToSign (Blob spec)",
+							"const stringToSign =",
+							"    method + \"\\n\" +       // VERB",
+							"    \"\\n\" +                // Content-Encoding",
+							"    \"\\n\" +                // Content-Language",
+							"    \"\\n\" +                // Content-Length",
+							"    \"\\n\" +                // Content-MD5",
+							"    \"\\n\" +                // Content-Type",
+							"    \"\\n\" +                // Date",
+							"    \"\\n\" +                // If-Modified-Since",
+							"    \"\\n\" +                // If-Match",
+							"    \"\\n\" +                // If-None-Match",
+							"    \"\\n\" +                // If-Unmodified-Since",
+							"    \"\\n\" +                // Range",
+							"    canonicalizedHeaders +",
+							"    canonicalizedResource;",
+							"",
+							"// Sign with key",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKey \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);",
+							"",
+							"// === DEBUG ===",
+							"console.log(\"=== SharedKey (Full) Signing Debug ===\");",
+							"console.log(\"Request URL:\", url.toString());",
+							"console.log(\"HTTP Method:\", method);",
+							"console.log(\"StringToSign:\\n[\" + stringToSign + \"]\");",
+							"console.log(\"CanonicalizedHeaders:\\n\" + canonicalizedHeaders);",
+							"console.log(\"CanonicalizedResource:\", canonicalizedResource);",
+							"console.log(\"Authorization Header:\", authHeader);",
+							"console.log(\"x-ms-date:\", now);",
+							"console.log(\"x-ms-version:\", version);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/PRE000625_items_20250905_XYZ_matching_BOD.txt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"PRE000625_items_20250905_XYZ_matching_BOD.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WriteBlob",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\";",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\";",
+							"",
+							"// Get request details",
+							"const method = pm.request.method;",
+							"const url = pm.request.url;",
+							"const path = url.getPath(); // e.g. /devstoreaccount1/container/blob.txt",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"const version = \"2020-10-02\";",
+							"pm.environment.set(\"x_ms_version\", version);",
+							"",
+							"// --- Compute Content-Length correctly in Postman ---",
+							"let body = pm.request.body && pm.request.body.raw ? pm.request.body.raw : \"\";",
+							"function utf8Length(str) {",
+							"    return unescape(encodeURIComponent(str)).length;",
+							"}",
+							"let bodyLength = body ? utf8Length(body) : 0;",
+							"let contentLength = bodyLength > 0 ? bodyLength.toString() : \"\";",
+							"pm.environment.set(\"bodyLength\", contentLength);",
+							"",
+							"// --- Collect all x-ms-* headers from request + inject date/version ---",
+							"let xmsHeaders = {};",
+							"pm.request.headers.each(function (h) {",
+							"    if (h.key.toLowerCase().startsWith(\"x-ms-\")) {",
+							"        xmsHeaders[h.key.toLowerCase()] = h.value;",
+							"    }",
+							"});",
+							"xmsHeaders[\"x-ms-date\"] = now;",
+							"xmsHeaders[\"x-ms-version\"] = version;",
+							"",
+							"// CanonicalizedHeaders = sorted by header name",
+							"let canonicalizedHeaders = Object.keys(xmsHeaders)",
+							"    .sort()",
+							"    .map(h => h.toLowerCase() + \":\" + xmsHeaders[h])",
+							"    .join(\"\\n\") + \"\\n\";",
+							"",
+							"// CanonicalizedResource (Azurite requires account name twice)",
+							"const canonicalizedResource =",
+							"    \"/\" + accountName + \"/\" + accountName + path.replace(\"/\" + accountName, \"\");",
+							"",
+							"// Content-Type",
+							"let contentType = \"application/xml\"",
+							"",
+							"// SharedKey StringToSign",
+							"const stringToSign =",
+							"    method + \"\\n\" +       // VERB",
+							"    \"\\n\" +                // Content-Encoding",
+							"    \"\\n\" +                // Content-Language",
+							"    contentLength + \"\\n\" +// Content-Length",
+							"    \"\\n\" +                // Content-MD5",
+							"    contentType + \"\\n\" +  // Content-Type",
+							"    \"\\n\" +                // Date",
+							"    \"\\n\" +                // If-Modified-Since",
+							"    \"\\n\" +                // If-Match",
+							"    \"\\n\" +                // If-None-Match",
+							"    \"\\n\" +                // If-Unmodified-Since",
+							"    \"\\n\" +                // Range",
+							"    canonicalizedHeaders +",
+							"    canonicalizedResource;",
+							"",
+							"// Sign with key",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKey \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);",
+							"",
+							"// === DEBUG ===",
+							"console.log(\"=== SharedKey (Full) Signing Debug ===\");",
+							"console.log(\"Request URL:\", url.toString());",
+							"console.log(\"HTTP Method:\", method);",
+							"console.log(\"Content-Length:\", contentLength);",
+							"console.log(\"Content-Type:\", contentType);",
+							"console.log(\"StringToSign:\\n[\" + stringToSign + \"]\");",
+							"console.log(\"CanonicalizedHeaders:\\n\" + canonicalizedHeaders);",
+							"console.log(\"CanonicalizedResource:\", canonicalizedResource);",
+							"console.log(\"Authorization Header:\", authHeader);",
+							"console.log(\"x-ms-date:\", now);",
+							"console.log(\"x-ms-version:\", version);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-length": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-blob-type",
+						"value": "BlockBlob",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "{{bodyLength}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\"?><AcknowledgeItemMaster xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><ApplicationArea><Sender><LogicalID>lid://infor.ln.ln01/4000</LogicalID><ComponentID>erp</ComponentID><ConfirmationCode>OnError</ConfirmationCode></Sender><CreationDateTime>2025-09-29T09:44:08Z</CreationDateTime><BODID>infor-nid:L567NQT482F74MTX_TST:4000::10000175:?ItemMaster&amp;verb=Acknowledge&amp;sequence=1</BODID></ApplicationArea><DataArea><Acknowledge><TenantID>L567NQT482F74MTX_TST</TenantID><AccountingEntityID>4000</AccountingEntityID><LocationID></LocationID><OriginalApplicationArea><Sender><LogicalID>lid://infor.ln.ln01/4000</LogicalID><ComponentID>erp</ComponentID><ConfirmationCode>OnError</ConfirmationCode></Sender><CreationDateTime>2025-09-29T09:44:05Z</CreationDateTime><BODID>infor-nid:L567NQT482F74MTX_TST:4000::10000175:?ItemMaster&amp;verb=Process</BODID></OriginalApplicationArea><ResponseCriteria><ResponseExpression actionCode=\"Rejected\"/><ChangeStatus><ReasonCode>tcbods0016</ReasonCode><Reason languageID=\"en-US\">No unit found for ISO Code pcs.</Reason></ChangeStatus></ResponseCriteria></Acknowledge><ItemMaster><ItemMasterHeader><ItemID><ID accountingEntity=\"4000\" lid=\"lid://infor.ln.ln01/4000\" variationID=\"001\">151.004.757</ID><RevisionID>001</RevisionID></ItemID><Description type=\"Item\">STRAP CARRYING PENTHEON</Description><Classification><Codes><Code listID=\"Item Types\" sequence=\"1\">M</Code><Code accountingEntity=\"4000\" listID=\"Item Groups\" sequence=\"2\">000004</Code></Codes></Classification><ItemStatus><TimePeriod><StartDateTime>2025-09-29T09:44:05Z</StartDateTime></TimePeriod><Code listID=\"Item Status\" sequence=\"0\">Open</Code><ArchiveIndicator>false</ArchiveIndicator></ItemStatus><BaseUOMCode>pcs</BaseUOMCode><UserArea/></ItemMasterHeader></ItemMaster></DataArea></AcknowledgeItemMaster>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:10000/devstoreaccount1/lnce-plm-tst/acknowledge/test.xml",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "10000",
+					"path": [
+						"devstoreaccount1",
+						"lnce-plm-tst",
+						"acknowledge",
+						"test.xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WriteBlob - Azure",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Load CryptoJS (Postman has it built in)",
+							"const CryptoJS = require(\"crypto-js\");",
+							"",
+							"// === CONFIG ===",
+							"const accountName = \"devstoreaccount1\";",
+							"const accountKey = \"Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==\";",
+							"",
+							"// Get request details",
+							"const method = pm.request.method;",
+							"const url = pm.request.url;",
+							"const path = url.getPath(); // e.g. /devstoreaccount1/container/blob.txt",
+							"",
+							"// === HEADERS ===",
+							"const now = new Date().toUTCString();",
+							"pm.environment.set(\"x_ms_date\", now);",
+							"const version = \"2020-10-02\";",
+							"pm.environment.set(\"x_ms_version\", version);",
+							"",
+							"// --- Compute Content-Length correctly in Postman ---",
+							"let body = pm.request.body && pm.request.body.raw ? pm.request.body.raw : \"\";",
+							"function utf8Length(str) {",
+							"    return unescape(encodeURIComponent(str)).length;",
+							"}",
+							"let bodyLength = body ? utf8Length(body) : 0;",
+							"let contentLength = bodyLength > 0 ? bodyLength.toString() : \"\";",
+							"pm.environment.set(\"bodyLength\", contentLength);",
+							"",
+							"// --- Collect all x-ms-* headers from request + inject date/version ---",
+							"let xmsHeaders = {};",
+							"pm.request.headers.each(function (h) {",
+							"    if (h.key.toLowerCase().startsWith(\"x-ms-\")) {",
+							"        xmsHeaders[h.key.toLowerCase()] = h.value;",
+							"    }",
+							"});",
+							"xmsHeaders[\"x-ms-date\"] = now;",
+							"xmsHeaders[\"x-ms-version\"] = version;",
+							"",
+							"// CanonicalizedHeaders = sorted by header name",
+							"let canonicalizedHeaders = Object.keys(xmsHeaders)",
+							"    .sort()",
+							"    .map(h => h.toLowerCase() + \":\" + xmsHeaders[h])",
+							"    .join(\"\\n\") + \"\\n\";",
+							"",
+							"// CanonicalizedResource (Azurite requires account name twice)",
+							"const canonicalizedResource =",
+							"    \"/\" + accountName + \"/\" + accountName + path.replace(\"/\" + accountName, \"\");",
+							"",
+							"// Content-Type",
+							"let contentType = \"application/xml\"",
+							"",
+							"// SharedKey StringToSign",
+							"const stringToSign =",
+							"    method + \"\\n\" +       // VERB",
+							"    \"\\n\" +                // Content-Encoding",
+							"    \"\\n\" +                // Content-Language",
+							"    contentLength + \"\\n\" +// Content-Length",
+							"    \"\\n\" +                // Content-MD5",
+							"    contentType + \"\\n\" +  // Content-Type",
+							"    \"\\n\" +                // Date",
+							"    \"\\n\" +                // If-Modified-Since",
+							"    \"\\n\" +                // If-Match",
+							"    \"\\n\" +                // If-None-Match",
+							"    \"\\n\" +                // If-Unmodified-Since",
+							"    \"\\n\" +                // Range",
+							"    canonicalizedHeaders +",
+							"    canonicalizedResource;",
+							"",
+							"// Sign with key",
+							"const key = CryptoJS.enc.Base64.parse(accountKey);",
+							"const signature = CryptoJS.HmacSHA256(stringToSign, key);",
+							"const signatureBase64 = CryptoJS.enc.Base64.stringify(signature);",
+							"",
+							"// Final auth header",
+							"const authHeader = \"SharedKey \" + accountName + \":\" + signatureBase64;",
+							"pm.environment.set(\"authHeader\", authHeader);",
+							"",
+							"// === DEBUG ===",
+							"console.log(\"=== SharedKey (Full) Signing Debug ===\");",
+							"console.log(\"Request URL:\", url.toString());",
+							"console.log(\"HTTP Method:\", method);",
+							"console.log(\"Content-Length:\", contentLength);",
+							"console.log(\"Content-Type:\", contentType);",
+							"console.log(\"StringToSign:\\n[\" + stringToSign + \"]\");",
+							"console.log(\"CanonicalizedHeaders:\\n\" + canonicalizedHeaders);",
+							"console.log(\"CanonicalizedResource:\", canonicalizedResource);",
+							"console.log(\"Authorization Header:\", authHeader);",
+							"console.log(\"x-ms-date:\", now);",
+							"console.log(\"x-ms-version:\", version);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "-qz8Q~HWLl3KYQmCJrU1L64icnbp3sAOWJC1xb8a",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "4d8a627b-7dbb-4a38-b6ea-91d59df265b0",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "https://storage.azure.com/.default",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://login.microsoftonline.com/79ec8483-7068-4557-9d63-0bb4df31d1be/oauth2/v2.0/token",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "SO1m341REzCopIzPpmWuYvkKoeSqyBrBOOlQ40oD8cDqExyxQ2vXwnrzvIXN41htumxv2lZi1bauKX2zn3A7Jw",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Z2FUDDJGTUSFD9TR_TST#buKBsyR18SekmjPubVt2uoMopvilrDU7gfgNpGp9F3R2AwC1aEzHkelz5ldfeNHtjr7smztNVDfoz7DCtWP6QQ",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-ms-version",
+						"value": "2020-10-02",
+						"type": "text"
+					},
+					{
+						"key": "x-ms-date",
+						"value": "{{x_ms_date}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{authHeader}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-ms-blob-type",
+						"value": "BlockBlob",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "{{bodyLength}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "IH;450.000.012;Test 12 for New ERP;;1;pcs;000002;Product;001;141025;;;;\nIH;450.000.013;Test 13 for New ERP;;1;mm;000003; Product;001;141025;;;;\nIH;450.000.014;Test 14 for New ERP;PRE000625;1;cm;000004; Product;001;141025;;;;\nIH;450.000.015;Test 15 for New ERP;PRE000625;1;m;000005; Product;001;141025;;;;\nIH;450.000.016;Test 16 for New ERP;PRE000625;1;ltr;000006; Product;001;141025;;;;\nIH;450.000.017;Test 17 for New ERP;PRE000625;1;kg;000007; Product;001;141025;;;;\nIH;450.000.018;Test 17 for New ERP;PRE000625;1;mm2;000008; Product;001;141025;;;;\nIH;450.000.020;Test 20 for New ERP Kosten artikel;;1;pcs;000010;Cost;001;141025;;;;\n",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://stlnceweu002.blob.core.windows.net/lnce-plm-tst/trn/items.dat",
+					"protocol": "https",
+					"host": [
+						"stlnceweu002",
+						"blob",
+						"core",
+						"windows",
+						"net"
+					],
+					"path": [
+						"lnce-plm-tst",
+						"trn",
+						"items.dat"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"value": ""
+		},
+		{
+			"key": "x_ms_date",
+			"value": ""
+		},
+		{
+			"key": "authHeader",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

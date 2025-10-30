@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApiFlows creationDate="2025-10-30T12:28:39Z" version="2025.10.14.d4843f3">
+   <ApiFlow>
+      <Name>RETRIEVE_FROM_AZURE</Name>
+      <Description/>
+      <LastUpdatedBy>Xibis - Simon van den Berg</LastUpdatedBy>
+      <LastUpdatedOn>2025-10-23 13:48:24.597</LastUpdatedOn>
+      <FlowVersion>1</FlowVersion>
+      <SchemaVersion>2</SchemaVersion>
+      <Operation>{"productName":null,"productLogicalid":null,"method":"POST","path":"RETRIEVE_FROM_AZURE/RETRIEVE_FROM_AZURE","proxyPath":"RETRIEVE_FROM_AZURE","restPath":"RETRIEVE_FROM_AZURE","endpointName":"RETRIEVE_FROM_AZURE","resourceName":"RETRIEVE_FROM_AZURE","description":null,"inputContentTypes":["JSON"],"outputContentTypes":["JSON"],"inputParameters":[],"inputContentType":"JSON","outputContentType":"JSON","outputParameters":[{"name":null,"description":null,"type":"BODY","path":null,"value":""}]}</Operation>
+      <Variables>{"$_InternalApiFlowReservedKeys_status":"200"}</Variables>
+      <FlowPart>
+         <FlowPartContainer>
+            <SequenceNumber>0</SequenceNumber>
+            <FlowPartContainerType>START_END</FlowPartContainerType>
+            <FlowParts>
+               <FlowPart>
+                  <FlowPartContainer>
+                     <SequenceNumber>0</SequenceNumber>
+                     <FlowPartContainerType>SEQUENTIAL_FLOW</FlowPartContainerType>
+                     <FlowParts>
+                        <FlowPart>
+                           <Activity>
+                              <SequenceNumber>0</SequenceNumber>
+                              <Name>RFC</Name>
+                              <ActivityType>ION_API</ActivityType>
+                              <Operation>{"productName":"ION Desk","productLogicalid":"infor.iondesk","method":"POST","path":"IONSERVICES/scriptingservice/engine/v1/scripts/{name}/execute","proxyPath":"IONSERVICES/scriptingservice/engine","restPath":"/v1/scripts/{name}/execute","endpointName":null,"resourceName":null,"description":null,"inputContentTypes":["JSON"],"outputContentTypes":["JSON"],"inputParameters":[{"name":"name","description":"Required filter on script name. Script name must be an exact match of the query string.","type":"PATH","dataType":"string","required":true,"schema":null,"example":null,"value":"GENERATE_RFC_HEADER","path":null},{"name":"body","description":"inputBody","type":"BODY","dataType":null,"required":true,"schema":null,"example":null,"value":"{}","path":null}],"inputContentType":"JSON","outputContentType":"JSON","outputParameters":[{"name":"Body","description":null,"type":"BODY","path":null,"value":null}]}</Operation>
+                           </Activity>
+                        </FlowPart>
+                        <FlowPart>
+                           <Activity>
+                              <SequenceNumber>1</SequenceNumber>
+                              <Name>AZURE</Name>
+                              <ActivityType>ION_API</ActivityType>
+                              <Operation>{"productName":"PLM","productLogicalid":"non-infor.customerapi.tst","method":"GET","path":"CustomerApi/TST/PLM/{container}/{blob}","proxyPath":"CustomerApi/TST/PLM","restPath":"/{container}/{blob}","endpointName":null,"resourceName":null,"description":null,"inputContentTypes":[],"outputContentTypes":["TEXT"],"inputParameters":[{"name":"container","description":null,"type":"PATH","dataType":"string","required":true,"schema":null,"example":null,"value":"lnce-plm-tst","path":null},{"name":"blob","description":null,"type":"PATH","dataType":"string","required":true,"schema":null,"example":null,"value":"tst/items.dat","path":null},{"name":"x-ms-date","description":null,"type":"HEADER","dataType":"string","required":true,"schema":null,"example":null,"value":"${RFC.Body}.rfc_date","path":null},{"name":"x-ms-version","description":null,"type":"HEADER","dataType":"string","required":true,"schema":null,"example":null,"value":"2020-10-02","path":null}],"inputContentType":null,"outputContentType":null,"outputParameters":[]}</Operation>
+                           </Activity>
+                        </FlowPart>
+                     </FlowParts>
+                  </FlowPartContainer>
+               </FlowPart>
+            </FlowParts>
+         </FlowPartContainer>
+      </FlowPart>
+   </ApiFlow>
+</ApiFlows>
